@@ -1,0 +1,46 @@
+
+$color-link: #1e90ff;
+$color-link-hover: #3742fa;
+$w-100: #fff;
+
+// bounce-in duration
+
+$bounce-in-duration: .7s;
+
+$break-points: (
+  "dk": 1700px,
+  "md-1400": 1400px,
+  "md-1100": 1100px,
+  "md": 991px,
+  "m": 700px,
+  "s": 600px,
+  "sm": 380px,
+  "x": 360px,
+  "xs": 330px
+);
+
+// section - 1
+// -------------------------
+
+$colorBlue: #029DDB;
+$bgColorBlue: linear-gradient(180deg,#2C5364, #000000);
+// section - 2
+// -------------------------
+
+$colorRed: #E81A2A;
+$bgColorRed: linear-gradient(180deg,#910909, #000000);
+// section - 3
+// -------------------------
+
+$colorYellow: #C8DB63;
+$bgColorYellow: linear-gradient(180deg,#A27B05, #000000);
+// section - 4
+// -------------------------
+
+$colorGreen: #359728;
+$bgColorGreen: linear-gradient(180deg,#00D26F, #000000);
+
+$colorDefault: #000;
+$bgColorDefault: #fff;
+
+$title: #fff;

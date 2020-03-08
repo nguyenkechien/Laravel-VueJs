@@ -19,7 +19,9 @@ mix.webpackConfig({
  | file for the application as well as bundling up all the JS files.
  |
  */
+let productionSourceMaps = false;
 
 mix
-  .js("resources/js/app.js", "public/js")
-  .sass("resources/sass/app.scss", "public/css");
+  .js("resources/js/main.js", "public/js")
+  .sass("resources/sass/main.scss", "public/css")
+  .sourceMaps(productionSourceMaps, "source-map")
