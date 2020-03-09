@@ -2034,7 +2034,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".nav__group {\n  margin: 0;\n}", ""]);
+exports.push([module.i, ".nav {\n  position: absolute;\n  top: 0;\n  left: 0;\n  transform: translate(0, 0);\n}\n.nav__group {\n  margin: 0;\n}", ""]);
 
 // exports
 
