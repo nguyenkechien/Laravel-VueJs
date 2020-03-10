@@ -1938,7 +1938,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "Navigation",
+  data: function data() {
+    return {
+      isOpen: true
+    };
+  },
+  methods: {
+    toogleMenu: function toogleMenu() {}
+  }
+});
 
 /***/ }),
 
@@ -2034,7 +2050,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".nav {\n  position: absolute;\n  top: 0;\n  left: 0;\n  transform: translate(0, 0);\n}\n.nav__group {\n  margin: 0;\n}", ""]);
+exports.push([module.i, ".nav {\n  position: absolute;\n  top: 0;\n  left: 0;\n  transform: translate(0, 0);\n  height: 100vh;\n  width: 250px;\n  background: #000;\n  color: #fff;\n  translate: 1s;\n}\n.nav-group {\n  margin: 0;\n}\n.nav-info-page {\n  padding: 5em;\n}", ""]);
 
 // exports
 
@@ -20309,15 +20325,27 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "nav" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "nav-info-page" }),
+    _vm._v(" "),
+    _c("ul", { staticClass: "nav-group" }, [
+      _c(
+        "li",
+        [_c("router-link", { attrs: { tag: "a", to: "/" } }, [_vm._v("Home")])],
+        1
+      )
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "nav" }, [
-      _c("ul", { staticClass: "nav__group" }, [_c("li", [_vm._v("a")])])
+    return _c("div", { staticClass: "nav-icon-menu" }, [
+      _c("i", { staticClass: "fal fa-bars" })
     ])
   }
 ]
@@ -36020,8 +36048,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\CODE\Learn\VueJs\laravel-vuejs\blog\resources\js\main.js */"./resources/js/main.js");
-module.exports = __webpack_require__(/*! D:\CODE\Learn\VueJs\laravel-vuejs\blog\resources\sass\main.scss */"./resources/sass/main.scss");
+__webpack_require__(/*! E:\CODE\Vue\Laravel-VueJs\resources\js\main.js */"./resources/js/main.js");
+module.exports = __webpack_require__(/*! E:\CODE\Vue\Laravel-VueJs\resources\sass\main.scss */"./resources/sass/main.scss");
 
 
 /***/ })
