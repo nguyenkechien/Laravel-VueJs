@@ -1944,11 +1944,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Navigation",
   data: function data() {
     return {
-      isOpen: true
+      isOpen: true,
+      dataMenus: [{
+        code: 1,
+        link: "/",
+        name: "Home"
+      }, {
+        code: 2,
+        link: "/login",
+        name: "Login"
+      }, {
+        code: 3,
+        link: "/about",
+        name: "ABOUT"
+      }]
     };
   },
   methods: {
@@ -2050,7 +2066,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".nav {\n  position: absolute;\n  top: 0;\n  left: 0;\n  transform: translate(0, 0);\n  height: 100vh;\n  width: 250px;\n  background: #000;\n  color: #fff;\n  translate: 1s;\n}\n.nav-group {\n  margin: 0;\n}\n.nav-info-page {\n  padding: 5em;\n}", ""]);
+exports.push([module.i, ".nav {\n  position: absolute;\n  top: 0;\n  left: 0;\n  transform: translate(0, 0);\n  height: 100vh;\n  width: 250px;\n  background: #000;\n  color: #fff;\n  translate: 1s;\n}\n.nav a {\n  color: #fff !important;\n}\n.nav-group {\n  margin: 0;\n}\n.nav-info-page {\n  padding: 5em;\n}", ""]);
 
 // exports
 
@@ -20330,13 +20346,25 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "nav-info-page" }),
     _vm._v(" "),
-    _c("ul", { staticClass: "nav-group" }, [
-      _c(
-        "li",
-        [_c("router-link", { attrs: { tag: "a", to: "/" } }, [_vm._v("Home")])],
-        1
-      )
-    ])
+    _c(
+      "ul",
+      { staticClass: "nav-group" },
+      _vm._l(_vm.dataMenus, function(menu) {
+        return _c(
+          "li",
+          { key: menu.code },
+          [
+            _c(
+              "router-link",
+              { attrs: { tag: "a", to: { path: menu.link } } },
+              [_vm._v(_vm._s(menu.name))]
+            )
+          ],
+          1
+        )
+      }),
+      0
+    )
   ])
 }
 var staticRenderFns = [
@@ -20345,7 +20373,10 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "nav-icon-menu" }, [
-      _c("i", { staticClass: "fal fa-bars" })
+      _c("span", [
+        _vm._v("\n      Menu\n      "),
+        _c("i", { staticClass: "fal fa-bars" })
+      ])
     ])
   }
 ]
@@ -36048,8 +36079,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! E:\CODE\Vue\Laravel-VueJs\resources\js\main.js */"./resources/js/main.js");
-module.exports = __webpack_require__(/*! E:\CODE\Vue\Laravel-VueJs\resources\sass\main.scss */"./resources/sass/main.scss");
+__webpack_require__(/*! D:\CODE\Learn\VueJs\laravel-vuejs\blog\resources\js\main.js */"./resources/js/main.js");
+module.exports = __webpack_require__(/*! D:\CODE\Learn\VueJs\laravel-vuejs\blog\resources\sass\main.scss */"./resources/sass/main.scss");
 
 
 /***/ })

@@ -1,12 +1,15 @@
 <template>
   <div class="nav">
     <div class="nav-icon-menu">
-      <i class="fal fa-bars"></i>
+      <span>
+        Menu
+        <i class="fal fa-bars"></i>
+      </span>
     </div>
     <div class="nav-info-page"></div>
     <ul class="nav-group">
-      <li>
-        <router-link tag="a" to="/">Home</router-link>
+      <li v-for="menu in dataMenus" :key="menu.code">
+        <router-link tag="a" :to="{path: menu.link}" >{{menu.name}}</router-link>
       </li>
     </ul>
   </div>
@@ -17,7 +20,24 @@ export default {
   name: "Navigation",
   data() {
     return {
-      isOpen: true
+      isOpen: true,
+      dataMenus: [
+        { 
+          code: 1,
+          link: "/",
+          name: "Home"
+        },
+        {
+          code: 2,
+          link: "/login",
+          name: "Login"
+        },
+        {
+          code: 3,
+          link: "/about",
+          name: "ABOUT"
+        }
+      ]
     };
   },
   methods: {
@@ -28,6 +48,9 @@ export default {
 
 <style lang="scss">
 .nav {
+  a {
+    color: #fff !important;
+  }
   position: absolute;
   top: 0;
   left: 0;
@@ -47,7 +70,6 @@ export default {
   }
   &-icon {
     &-menu {
-
     }
   }
 }
