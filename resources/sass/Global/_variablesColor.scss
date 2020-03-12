@@ -1,18 +1,4 @@
 
-$color-link: #1e90ff;
-$color-link-hover: #3742fa;
-
-$break-points: (
-  "dk": 1700px,
-  "dk-1400": 1400px,
-  "dk-1100": 1100px,
-  "md": 991px,
-  "m": 700px,
-  "s": 480px,
-  "sm": 380px,
-  "x": 360px,
-  "xs": 330px
-);
 //VARIABLES
 //Black
 $black-100: rgba(0, 0, 0, 1);
@@ -25,6 +11,7 @@ $black-40: rgba(0, 0, 0, 0.4);
 $black-30: rgba(0, 0, 0, 0.3);
 $black-20: rgba(0, 0, 0, 0.2);
 $black-10: rgba(0, 0, 0, 0.1);
+
 //White
 $white-100: rgba(255, 255, 255, 1);
 $white-90: rgba(255, 255, 255, 0.9);
@@ -39,6 +26,7 @@ $white-10: rgba(255, 255, 255, 0.1);
 
 //Invisible
 $transparent: rgba(255, 255, 255, 0);
+
 //COLORS
 $light-grey: #e0dfe1;
 $light-grey-A: #f0f0f0;
@@ -50,3 +38,5 @@ $blue: #0190ec;
 //BMW
 $light-blue: #6295ca;
 $dark-blue: #13274c;
+$red: #d1253b;
+

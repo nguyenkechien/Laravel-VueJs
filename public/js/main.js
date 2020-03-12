@@ -1987,6 +1987,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
@@ -2066,7 +2069,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".nav {\n  position: absolute;\n  top: 0;\n  left: 0;\n  transform: translate(0, 0);\n  height: 100vh;\n  width: 250px;\n  background: #000;\n  color: #fff;\n  translate: 1s;\n}\n.nav a {\n  color: #fff !important;\n}\n.nav-group {\n  margin: 0;\n}\n.nav-info-page {\n  padding: 5em;\n}", ""]);
+exports.push([module.i, ".nav {\n  position: absolute;\n  top: 0;\n  left: 0;\n  transform: translate(0, 0);\n  height: 100vh;\n  width: 250px;\n  background: #000;\n  color: #fff;\n  translate: 1s;\n  text-align: right;\n  padding-right: 10px;\n}\n.nav a {\n  color: #fff !important;\n}\n.nav-group {\n  margin: 0;\n}\n.nav-info-page {\n  padding: 5em;\n}", ""]);
 
 // exports
 
@@ -20401,9 +20404,25 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v(" Aboute Component ")])
+  return _vm._m(0)
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("p", [_vm._v("Aboute Component")]),
+      _vm._v(" "),
+      _c("img", {
+        attrs: {
+          src: __webpack_require__(/*! ./../../images/vue-laravel.png */ "./resources/images/vue-laravel.png"),
+          alt: "vue-laravel"
+        }
+      })
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -35599,6 +35618,17 @@ module.exports = function(module) {
 	return module;
 };
 
+
+/***/ }),
+
+/***/ "./resources/images/vue-laravel.png":
+/*!******************************************!*\
+  !*** ./resources/images/vue-laravel.png ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vue-laravel.png?1518c0bf8c9c2e2a996178bf3a129a4f";
 
 /***/ }),
 

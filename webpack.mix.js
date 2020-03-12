@@ -29,9 +29,9 @@ mix
   .js("resources/js/main.js", "public/js")
   .sass("resources/sass/main.scss", "public/css")
   .sourceMaps(productionSourceMaps, "source-map")
-    .options({
-    processCssUrls: false
-  });
+  //   .options({
+  //   processCssUrls: false
+  // });
 
 if (mix.inProduction()) {
   mix.version();

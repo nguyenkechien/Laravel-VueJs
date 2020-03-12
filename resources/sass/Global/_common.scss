@@ -21,7 +21,7 @@ body {
   p {
     margin: 0;
     padding: 0;
-    color: #fff;
+    color: $black-100;
     font-family: "One-400";
     font-weight: normal;
   }
@@ -52,7 +52,7 @@ body {
   text-align: center;
   margin: 0 auto;
   position: relative;
-  
+
 
   img {
     &:not([alt]),

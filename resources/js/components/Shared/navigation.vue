@@ -22,7 +22,7 @@ export default {
     return {
       isOpen: true,
       dataMenus: [
-        { 
+        {
           code: 1,
           link: "/",
           name: "Home"
@@ -60,6 +60,8 @@ export default {
   background: #000;
   color: #fff;
   translate: 1s;
+  text-align: right;
+  padding-right: 10px;
   &-group {
     margin: 0;
   }
