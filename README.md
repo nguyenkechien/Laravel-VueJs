@@ -45,5 +45,6 @@ npm run watch
 
 * Bonus
 ```sh
-Sử dụng extention của chrome để reloading khi css và js thay đổi "đối với file php thì phải tự reload page" https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei
+Sử dụng extention của chrome để reloading khi css và js thay đổi "đối với file php thì phải tự reload page" 
+https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei
 ``` 
