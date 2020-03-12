@@ -2,7 +2,9 @@ const mix = require("laravel-mix");
 const LiveReloadPlugin = require("webpack-livereload-plugin");
 
 mix.webpackConfig({
-  plugins: [new LiveReloadPlugin()],
+  plugins: [
+    new LiveReloadPlugin(),
+  ],
   resolve: {
     extensions: [".js", ".vue"],
     alias: {
@@ -26,7 +28,10 @@ let productionSourceMaps = false;
 mix
   .js("resources/js/main.js", "public/js")
   .sass("resources/sass/main.scss", "public/css")
-  .sourceMaps(productionSourceMaps, "source-map");
+  .sourceMaps(productionSourceMaps, "source-map")
+    .options({
+    processCssUrls: false
+  });
 
 if (mix.inProduction()) {
   mix.version();
