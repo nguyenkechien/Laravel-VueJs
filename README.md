@@ -12,6 +12,19 @@ Vue.js là một framework linh động dùng để xây dựng giao diện ngư
 ```sh
 npm i || npm install
 ```
+* Install Vendor
+```sh
+composer install
+```
+```sh
+composer run scrtip post-autoload-dump
+```
+```sh
+composer run scrtip post-root-package-install
+```
+```sh
+composer run scrtip post-create-project-cmd
+```
 * Run Sript
 ```sh
 npm run start --- để start serve apache php
