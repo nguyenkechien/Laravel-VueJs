@@ -1,15 +1,24 @@
 <template>
-  <div class="nav">
+  <div class="nav" :class="{active:isOpen}">
     <div class="nav-icon-menu">
-      <span>
-        Menu
-        <i class="fal fa-bars"></i>
-      </span>
+      <div class="nav-icon-menu-group" v-on:click="isOpen = !isOpen">
+        <span class="nav-icon-menu-name">Menu</span>
+        <span class="nav-icon-menu-icon">
+          <i class="fal fa-bars"></i>
+        </span>
+      </div>
     </div>
     <div class="nav-info-page"></div>
     <ul class="nav-group">
       <li v-for="menu in dataMenus" :key="menu.code">
-        <router-link tag="a" :to="{path: menu.link}" >{{menu.name}}</router-link>
+        <router-link tag="a" :to="{path: menu.link}">
+          <div class="nav-icon-menu-group">
+            <span class="nav-icon-menu-name">{{menu.name}}</span>
+            <span class="nav-icon-menu-icon">
+              <i :class="menu.classIcon"></i>
+            </span>
+          </div>
+        </router-link>
       </li>
     </ul>
   </div>
@@ -25,17 +34,20 @@ export default {
         {
           code: 1,
           link: "/",
-          name: "Home"
+          name: "Home",
+          classIcon: "fas fa-home-lg-alt"
         },
         {
           code: 2,
           link: "/login",
-          name: "Login"
+          name: "Login",
+          classIcon: "fas fa-sign-in"
         },
         {
           code: 3,
           link: "/about",
-          name: "ABOUT"
+          name: "ABOUT",
+          classIcon: "fas fa-address-card"
         }
       ]
     };
@@ -56,10 +68,10 @@ export default {
   left: 0;
   transform: translate(0, 0);
   height: 100vh;
-  width: 250px;
+  width: 75px;
   background: #000;
   color: #fff;
-  translate: 1s;
+  transition: 0.75s;
   text-align: right;
   padding-right: 10px;
   &-group {
@@ -72,6 +84,39 @@ export default {
   }
   &-icon {
     &-menu {
+      padding: 10px 0;
+      span {
+        cursor: pointer;
+        user-select: none;
+      }
+      &-name {
+        opacity: 0;
+        transition: 0.5s;
+        font-size: 0;
+      }
+      &-icon {
+        i{
+          font-size: 30px;
+        }
+      }
+      &-group {
+        display: inline-flex;
+        font-size: 18px;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+  &.active {
+    width: 200px;
+    .nav {
+      &-icon-menu {
+        &-name {
+          opacity: 1;
+          transition: 0.5s;
+          font-size: 100%;
+        }
+      }
     }
   }
 }

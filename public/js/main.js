@@ -1947,6 +1947,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Navigation",
   data: function data() {
@@ -1955,15 +1964,18 @@ __webpack_require__.r(__webpack_exports__);
       dataMenus: [{
         code: 1,
         link: "/",
-        name: "Home"
+        name: "Home",
+        classIcon: "fas fa-home-lg-alt"
       }, {
         code: 2,
         link: "/login",
-        name: "Login"
+        name: "Login",
+        classIcon: "fas fa-sign-in"
       }, {
         code: 3,
         link: "/about",
-        name: "ABOUT"
+        name: "ABOUT",
+        classIcon: "fas fa-address-card"
       }]
     };
   },
@@ -2069,7 +2081,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".nav {\n  position: absolute;\n  top: 0;\n  left: 0;\n  transform: translate(0, 0);\n  height: 100vh;\n  width: 250px;\n  background: #000;\n  color: #fff;\n  translate: 1s;\n  text-align: right;\n  padding-right: 10px;\n}\n.nav a {\n  color: #fff !important;\n}\n.nav-group {\n  margin: 0;\n}\n.nav-info-page {\n  padding: 5em;\n}", ""]);
+exports.push([module.i, ".nav {\n  position: absolute;\n  top: 0;\n  left: 0;\n  transform: translate(0, 0);\n  height: 100vh;\n  width: 75px;\n  background: #000;\n  color: #fff;\n  transition: 0.75s;\n  text-align: right;\n  padding-right: 10px;\n}\n.nav a {\n  color: #fff !important;\n}\n.nav-group {\n  margin: 0;\n}\n.nav-info-page {\n  padding: 5em;\n}\n.nav-icon-menu {\n  padding: 10px 0;\n}\n.nav-icon-menu span {\n  cursor: pointer;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n.nav-icon-menu-name {\n  opacity: 0;\n  transition: 0.5s;\n  font-size: 0;\n}\n.nav-icon-menu-icon i {\n  font-size: 30px;\n}\n.nav-icon-menu-group {\n  display: inline-flex;\n  font-size: 18px;\n  justify-content: center;\n  align-items: center;\n}\n.nav.active {\n  width: 200px;\n}\n.nav.active .nav-icon-menu-name {\n  opacity: 1;\n  transition: 0.5s;\n  font-size: 100%;\n}", ""]);
 
 // exports
 
@@ -20344,8 +20356,25 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "nav" }, [
-    _vm._m(0),
+  return _c("div", { staticClass: "nav", class: { active: _vm.isOpen } }, [
+    _c("div", { staticClass: "nav-icon-menu" }, [
+      _c(
+        "div",
+        {
+          staticClass: "nav-icon-menu-group",
+          on: {
+            click: function($event) {
+              _vm.isOpen = !_vm.isOpen
+            }
+          }
+        },
+        [
+          _c("span", { staticClass: "nav-icon-menu-name" }, [_vm._v("Menu")]),
+          _vm._v(" "),
+          _vm._m(0)
+        ]
+      )
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "nav-info-page" }),
     _vm._v(" "),
@@ -20360,7 +20389,17 @@ var render = function() {
             _c(
               "router-link",
               { attrs: { tag: "a", to: { path: menu.link } } },
-              [_vm._v(_vm._s(menu.name))]
+              [
+                _c("div", { staticClass: "nav-icon-menu-group" }, [
+                  _c("span", { staticClass: "nav-icon-menu-name" }, [
+                    _vm._v(_vm._s(menu.name))
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "nav-icon-menu-icon" }, [
+                    _c("i", { class: menu.classIcon })
+                  ])
+                ])
+              ]
             )
           ],
           1
@@ -20375,11 +20414,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "nav-icon-menu" }, [
-      _c("span", [
-        _vm._v("\n      Menu\n      "),
-        _c("i", { staticClass: "fal fa-bars" })
-      ])
+    return _c("span", { staticClass: "nav-icon-menu-icon" }, [
+      _c("i", { staticClass: "fal fa-bars" })
     ])
   }
 ]
