@@ -2,20 +2,18 @@
   <div id="app">
     <div class="flex-center position-ref full-height">
       <app-Header></app-Header>
-      <app-Navigation></app-Navigation>
       <router-view></router-view>
     </div>
   </div>
 </template>
 
 <script>
-import Nav from "@/js/components/Shared/menu";
-import Navigation from "./../components/Shared/navigation";
+import Header from "@/js/components/Shared/menu";
+
 export default {
   name: "App",
   components: {
-    "app-Header": Nav,
-    "app-Navigation": Navigation
+    "app-Header": Header,
   }
 };
 </script>
