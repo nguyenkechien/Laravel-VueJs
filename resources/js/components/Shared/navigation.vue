@@ -2,21 +2,21 @@
   <div class="nav" :class="{active:isOpen}">
     <div class="nav-icon-menu">
       <div class="nav-icon-menu-group" v-on:click="isOpen = !isOpen">
-        <span class="nav-icon-menu-name">Menu</span>
         <span class="nav-icon-menu-icon">
           <i class="fal fa-bars"></i>
         </span>
+        <span class="nav-icon-menu-name">Menu</span>
       </div>
     </div>
-    <div class="nav-info-page"></div>
+    <div class="nav-search"></div>
     <ul class="nav-group">
       <li v-for="menu in dataMenus" :key="menu.code">
         <router-link tag="a" :to="{path: menu.link}">
           <div class="nav-icon-menu-group">
-            <span class="nav-icon-menu-name">{{menu.name}}</span>
             <span class="nav-icon-menu-icon">
               <i :class="menu.classIcon"></i>
             </span>
+            <span class="nav-icon-menu-name">{{menu.name}}</span>
           </div>
         </router-link>
       </li>
@@ -59,6 +59,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import "./../../../sass/Global/_variables.scss";
 .nav {
   a {
     color: #fff !important;
@@ -67,13 +68,14 @@ export default {
   top: 0;
   left: 0;
   transform: translate(0, 0);
-  height: 100vh;
+  height: 100%;
   width: 75px;
   background: #000;
   color: #fff;
   transition: 0.75s;
-  text-align: right;
-  padding-right: 10px;
+  text-align: left;
+  text-transform: capitalize;
+  overflow: hidden;
   &-group {
     margin: 0;
   }
@@ -90,20 +92,26 @@ export default {
         user-select: none;
       }
       &-name {
-        opacity: 0;
-        transition: 0.5s;
-        font-size: 0;
+        width: 0%;
+        display: none;
       }
       &-icon {
-        i{
+        width: 100%;
+        padding: 0 0.5em 0;
+        text-align: center;
+        margin: $mx-center;
+        transition: 0.5s;
+        i {
           font-size: 30px;
         }
       }
       &-group {
-        display: inline-flex;
+        display: flex;
         font-size: 18px;
         justify-content: center;
         align-items: center;
+        margin: 0 auto;
+        padding: 0.6em 0;
       }
     }
   }
@@ -112,9 +120,11 @@ export default {
     .nav {
       &-icon-menu {
         &-name {
-          opacity: 1;
-          transition: 0.5s;
-          font-size: 100%;
+          display: block;
+          width: 60%;
+        }
+        &-icon {
+          width: 40%;
         }
       }
     }
