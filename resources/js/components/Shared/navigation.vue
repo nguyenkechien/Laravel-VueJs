@@ -2,21 +2,20 @@
   <div class="nav" :class="{active:isOpen}">
     <div class="nav-icon-menu">
       <div class="nav-icon-menu-group" v-on:click="isOpen = !isOpen">
-        <span class="nav-icon-menu-name">Menu</span>
         <span class="nav-icon-menu-icon">
           <i class="fal fa-bars"></i>
         </span>
+        <span class="nav-icon-menu-name">Menu</span>
       </div>
     </div>
-    <div class="nav-info-page"></div>
     <ul class="nav-group">
-      <li v-for="menu in dataMenus" :key="menu.code">
+      <li v-for="(menu, i) in dataMenus" :key="i">
         <router-link tag="a" :to="{path: menu.link}">
           <div class="nav-icon-menu-group">
-            <span class="nav-icon-menu-name">{{menu.name}}</span>
             <span class="nav-icon-menu-icon">
               <i :class="menu.classIcon"></i>
             </span>
+            <span class="nav-icon-menu-name">{{menu.name}}</span>
           </div>
         </router-link>
       </li>
@@ -32,22 +31,29 @@ export default {
       isOpen: true,
       dataMenus: [
         {
-          code: 1,
           link: "/",
           name: "Home",
-          classIcon: "fas fa-home-lg-alt"
+          classIcon: "fal fa-home"
         },
         {
-          code: 2,
-          link: "/login",
-          name: "Login",
-          classIcon: "fas fa-sign-in"
+          link: "/dashboard",
+          name: "Dashboard",
+          classIcon: "fal fa-tachometer-slowest"
         },
         {
-          code: 3,
+          link: "/companies",
+          name: "Companies",
+          classIcon: "fal fa-building"
+        },
+        {
           link: "/about",
-          name: "ABOUT",
-          classIcon: "fas fa-address-card"
+          name: "About",
+          classIcon: "fal fa-address-card"
+        },
+        {
+          link: "/logout",
+          name: "Logout",
+          classIcon: "fal fa-sign-out-alt"
         }
       ]
     };
@@ -63,7 +69,6 @@ export default {
   a {
     color: #fff !important;
   }
-  position: absolute;
   top: 0;
   left: 0;
   transform: translate(0, 0);
@@ -72,49 +77,54 @@ export default {
   background: #000;
   color: #fff;
   transition: 0.75s;
-  text-align: right;
-  padding-right: 10px;
+  text-align: left;
+  padding: 0 1em;
   &-group {
     margin: 0;
-  }
-  &-info {
-    &-page {
-      padding: 5em;
-    }
+    padding: 0 !important;
   }
   &-icon {
     &-menu {
       padding: 10px 0;
-      span {
-        cursor: pointer;
-        user-select: none;
-      }
       &-name {
+        visibility: hidden;
         opacity: 0;
-        transition: 0.5s;
         font-size: 0;
       }
       &-icon {
-        i{
-          font-size: 30px;
+        width: 100%;
+        i {
+          font-size: 20px;
         }
       }
       &-group {
         display: inline-flex;
-        font-size: 18px;
         justify-content: center;
         align-items: center;
+        width: 100%;
+        span {
+          padding: 15px 5px;
+          cursor: pointer;
+          user-select: none;
+        }
       }
     }
   }
   &.active {
-    width: 200px;
+    width: 160px;
     .nav {
-      &-icon-menu {
-        &-name {
-          opacity: 1;
-          transition: 0.5s;
-          font-size: 100%;
+      &-icon {
+        &-menu {
+          &-name {
+            visibility: visible;
+            opacity: 1;
+            font-size: 16px;
+            width: 70%;
+            transition: 0.75s opacity;
+          }
+          &-icon {
+            width: 30%;
+          }
         }
       }
     }

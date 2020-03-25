@@ -57,7 +57,7 @@ export default {
   },
   computed: {
     calculatedBox() {
-      const ctx = this.provider.context;
+      const ctx = this.provider.context
 
       const calculated = {
         x: percentWidthToPix(this.x1, ctx),
@@ -74,6 +74,10 @@ export default {
     if (!this.provider.context) {
       return;
     }
+
+    /**
+     * @type {CanvasDrawPath}
+     */
     const ctx = this.provider.context;
 
     const oldBox = this.oldBox;
@@ -91,7 +95,7 @@ export default {
     ctx.fill();
 
     ctx.fillStyle = "#000";
-    ctx.font = "28px sans-serif";
+    ctx.font = "28px One-400";
     ctx.textAlign = "center";
     ctx.fillText(
       Math.floor(this.value),

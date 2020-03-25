@@ -71,6 +71,7 @@ body {
 }
 
 body a {
+  font-family: "One-400" !important;
   text-decoration: none;
   color: #fff;
 }
@@ -84,7 +85,7 @@ body p {
   margin: 0;
   padding: 0;
   color: black;
-  font-family: "One-400";
+  font-family: "One-400" !important;
   font-weight: normal;
 }
 
@@ -94,7 +95,7 @@ body h3,
 body h4,
 body h5,
 body h6 {
-  font-family: "Bold";
+  font-family: "Bold" !important;
   margin: 0;
   padding: 0;
 }
@@ -110,10 +111,17 @@ body ol li {
   list-style-type: none;
 }
 
+body button:focus,
+body button:active {
+  border: 0;
+  outline: none;
+}
+
 #app {
   text-align: center;
   margin: 0 auto;
   position: relative;
+  font-family: "One-400";
 }
 
 #app img {
@@ -633,7 +641,8 @@ body ol li {
   text-align: center;
 }
 
-#app .title {
+#app .content__title {
+  font-family: "Bold";
   font-size: 84px;
 }
 

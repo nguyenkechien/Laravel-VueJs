@@ -1,5 +1,5 @@
 <template>
-  <div class="links top-bar">
+  <div class="links footer-bar">
     <router-link tag="a" to="/">Home</router-link>
     <router-link tag="a" to="/dashboard">Dashboard</router-link>
     <router-link tag="a" to="/companies">Companies</router-link>
@@ -14,8 +14,8 @@ export default {};
 </script>
 
 <style lang="scss">
-.top-bar {
+.footer-bar {
   width: 100%;
-  text-align: right;
+  text-align: left;
 }
 </style>

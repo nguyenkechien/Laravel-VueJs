@@ -23,11 +23,12 @@
 
   .content {
     text-align: center;
+    &__title {
+      font-family: "Bold";
+      font-size: 84px;
+    }
   }
 
-  .title {
-    font-size: 84px;
-  }
 
   .links>a {
     color          : #636b6f;

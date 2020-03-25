@@ -8,7 +8,9 @@ body {
   padding: 0;
   margin: 0;
   font-family: "One-400";
+
   a {
+    font-family: "One-400" !important;
     text-decoration: none;
     color: #fff;
 
@@ -22,7 +24,7 @@ body {
     margin: 0;
     padding: 0;
     color: $black-100;
-    font-family: "One-400";
+    font-family: "One-400" !important;
     font-weight: normal;
   }
 
@@ -32,7 +34,7 @@ body {
   h4,
   h5,
   h6 {
-    font-family: "Bold";
+    font-family: "Bold" !important;
     margin: 0;
     padding: 0;
   }
@@ -46,19 +48,31 @@ body {
       list-style-type: none;
     }
   }
+
+  button {
+
+    &:focus,
+    &:active {
+      border: 0;
+      outline: none;
+    }
+  }
 }
 
 #app {
   text-align: center;
   margin: 0 auto;
   position: relative;
+  font-family: "One-400";
 
 
   img {
+
     &:not([alt]),
-    &[alt='']{
-       border: 5px solid red;
+    &[alt=''] {
+      border: 5px solid red;
     }
+
     max-width: 100%;
     margin: 0 auto;
     vertical-align: bottom;
@@ -90,4 +104,3 @@ body {
     position: fixed !important;
   }
 }
-

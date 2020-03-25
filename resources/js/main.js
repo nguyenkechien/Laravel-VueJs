@@ -1,11 +1,14 @@
-import './bootstrap';
-import Vue from 'vue';
-import Routes from '@/js/router/index.js';
-import App from '@/js/views/App';
+import "./bootstrap";
+import Vue from "vue";
+import vuetify from "@/js/plugins/vuetify";
+import Routes from "@/js/router";
+import App from "@/js/views/App";
+
 
 const app = new Vue({
   router: Routes,
-  render: h => h(App),
-}).$mount('#app');
+  vuetify,
+  render: h => h(App)
+}).$mount("#app");
 
 export default app;

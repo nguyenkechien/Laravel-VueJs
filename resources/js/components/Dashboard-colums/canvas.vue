@@ -21,7 +21,7 @@ export default {
       }
     };
   },
-  provide() {
+  provide () {
     return {
       provider: this.provider
     };

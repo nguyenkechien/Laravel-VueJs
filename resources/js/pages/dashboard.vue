@@ -7,9 +7,9 @@
         :x1="((index / chartValues.length) * 100)"
         :x2="((index / chartValues.length) * 100) + (100 / chartValues.length)"
         :y1="100"
-        :y2="100 - obj.val"
+        :y2="100 - obj.value"
         :color="obj.color"
-        :value="obj.val"
+        :value="obj.value"
         :key="index"
       ></my-box>
     </my-canvas>
@@ -17,8 +17,8 @@
 </template>
 
 <script>
-import MyCanvas from "@/js/components/canvas/canvas.vue";
-import MyBox from "@/js/components/canvas/box.vue";
+import MyCanvas from "@/js/components/Dashboard-colums/canvas.vue";
+import MyBox from "@/js/components/Dashboard-colums/box.vue";
 
 export default {
   name: "dashboard",
@@ -61,9 +61,9 @@ export default {
 <style lang="scss">
 .dashboard {
   position: relative;
-  height: 100vh;
-  width: 100vw;
+  width: 50%;
   padding: 20px;
   box-sizing: border-box;
+  margin: 0 auto;
 }
 </style>
