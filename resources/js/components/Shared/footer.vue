@@ -1,12 +1,18 @@
 <template>
-  <div class="links footer-bar">
-    <router-link tag="a" to="/">Home</router-link>
-    <router-link tag="a" to="/dashboard">Dashboard</router-link>
-    <router-link tag="a" to="/companies">Companies</router-link>
-    <router-link tag="a" to="/login">Login</router-link>
-    <router-link tag="a" to="/register">Register</router-link>
-    <router-link tag="a" to="/about">About</router-link>
-  </div>
+  <v-footer>
+    <div class="links footer-bar">
+      <a href="https://www.facebook.com/KyS1111" target="_blank">
+        <v-icon>fab fa-facebook-f</v-icon>
+      </a>
+      <a href="https://www.instagram.com/b_ll_p/" target="_blank">
+        <v-icon>fab fa-instagram</v-icon>
+      </a>
+      <a href="https://twitter.com/Chin58351840" target="_blank">
+        <v-icon>fab fa-twitter</v-icon>
+      </a>
+    </div>
+    <div class="copy">&copy; {{ new Date().getFullYear() }}</div>
+  </v-footer>
 </template>
 
 <script>
@@ -14,8 +20,24 @@ export default {};
 </script>
 
 <style lang="scss">
-.footer-bar {
+footer {
   width: 100%;
+  background-color: #fff !important;
+  position: unset !important;
+}
+.footer-bar {
+  width: 80%;
   text-align: left;
+  a {
+    i {
+      &:hover {
+        color: #0190ec;
+      }
+    }
+  }
+}
+.copy {
+  width: 20%;
+  text-align: right;
 }
 </style>

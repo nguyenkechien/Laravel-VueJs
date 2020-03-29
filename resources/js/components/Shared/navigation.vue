@@ -1,26 +1,43 @@
 <template>
-  <div class="nav" :class="{active:isOpen}">
-    <div class="nav-icon-menu">
-      <div class="nav-icon-menu-group" v-on:click="isOpen = !isOpen">
-        <span class="nav-icon-menu-icon">
-          <i class="fal fa-bars"></i>
-        </span>
-        <span class="nav-icon-menu-name">Menu</span>
-      </div>
-    </div>
-    <ul class="nav-group">
-      <li v-for="(menu, i) in dataMenus" :key="i">
-        <router-link tag="a" :to="{path: menu.link}">
-          <div class="nav-icon-menu-group">
-            <span class="nav-icon-menu-icon">
-              <i :class="menu.classIcon"></i>
-            </span>
-            <span class="nav-icon-menu-name">{{menu.name}}</span>
-          </div>
-        </router-link>
-      </li>
-    </ul>
-  </div>
+  <v-card style="border-radius: 0">
+    <v-navigation-drawer v-model="drawer" dark :mini-variant.sync="mini" permanent>
+      <v-list-item class="px-2">
+        <v-list-item-avatar>
+          <v-img v-if="$auth.user().avatar" src="https://randomuser.me/api/portraits/men/85.jpg"></v-img>
+          <v-icon v-else>fal fa-user-circle</v-icon>
+        </v-list-item-avatar>
+        <v-list-item-title style="text-transform: capitalize;">{{ $auth.user().name }}</v-list-item-title>
+
+        <v-btn icon @click.stop="mini = !mini">
+          <v-icon>far fa-chevron-left</v-icon>
+        </v-btn>
+      </v-list-item>
+
+      <v-divider></v-divider>
+
+      <v-list dense>
+        <v-list-item v-for="item in items" :key="item.title" link :to="{path: item.link}">
+          <v-list-item-icon>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+      <template v-slot:append>
+        <div class="pa-2">
+          <!-- is Opent -->
+          <v-btn block @click="logOut" v-if="!mini">Logout</v-btn>
+          <!-- is Close -->
+          <v-btn small fab dark color="teal" @click="logOut" v-else>
+            <v-icon dark>fa-sign-out-alt</v-icon>
+          </v-btn>
+        </div>
+      </template>
+    </v-navigation-drawer>
+  </v-card>
 </template>
 
 <script>
@@ -28,106 +45,49 @@ export default {
   name: "Navigation",
   data() {
     return {
-      isOpen: true,
-      dataMenus: [
+      drawer: true,
+      items: [
         {
           link: "/",
-          name: "Home",
-          classIcon: "fal fa-home"
+          title: "Home",
+          icon: "fal fa-home"
         },
         {
-          link: "/dashboard",
-          name: "Dashboard",
-          classIcon: "fal fa-tachometer-slowest"
+          link: "/dashboard.html",
+          title: "Dashboard",
+          icon: "fal fa-tachometer-slowest"
         },
         {
-          link: "/companies",
-          name: "Companies",
-          classIcon: "fal fa-building"
+          link: "/companies.html",
+          title: "Companies",
+          icon: "fal fa-building"
         },
         {
-          link: "/about",
-          name: "About",
-          classIcon: "fal fa-address-card"
+          link: "/users.html",
+          title: "Users",
+          icon: "fal fa-user"
         },
         {
-          link: "/logout",
-          name: "Logout",
-          classIcon: "fal fa-sign-out-alt"
+          link: "/about.html",
+          title: "About",
+          icon: "fal fa-address-card"
         }
-      ]
+      ],
+      mini: true
     };
   },
   methods: {
-    toogleMenu: function() {}
+    logOut: function() {
+      this.$auth.logout();
+    }
   }
 };
 </script>
 
 <style lang="scss">
-.nav {
-  a {
-    color: #fff !important;
-  }
-  top: 0;
-  left: 0;
-  transform: translate(0, 0);
-  height: 100vh;
-  width: 75px;
-  background: #000;
-  color: #fff;
-  transition: 0.75s;
-  text-align: left;
-  padding: 0 1em;
-  &-group {
-    margin: 0;
-    padding: 0 !important;
-  }
-  &-icon {
-    &-menu {
-      padding: 10px 0;
-      &-name {
-        visibility: hidden;
-        opacity: 0;
-        font-size: 0;
-      }
-      &-icon {
-        width: 100%;
-        i {
-          font-size: 20px;
-        }
-      }
-      &-group {
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        span {
-          padding: 15px 5px;
-          cursor: pointer;
-          user-select: none;
-        }
-      }
-    }
-  }
-  &.active {
-    width: 160px;
-    .nav {
-      &-icon {
-        &-menu {
-          &-name {
-            visibility: visible;
-            opacity: 1;
-            font-size: 16px;
-            width: 70%;
-            transition: 0.75s opacity;
-          }
-          &-icon {
-            width: 30%;
-          }
-        }
-      }
-    }
-  }
+h2 {
+  // text-transform: capitalize;
 }
 </style>
+
+

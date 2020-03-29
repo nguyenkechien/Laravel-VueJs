@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Company;
+use App\Model\Company;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class CompaniesController extends Controller
 {
+
+  public function __construct()
+  {
+    $this->middleware('auth:api', ['except' => ['index', 'show']]);
+  }
   /**
    * Display a listing of the resource.
    *

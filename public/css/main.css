@@ -26,38 +26,6 @@
   }
 }
 
-@font-face {
-  font-family: "Bold";
-  src: url(/fonts/Bold.eot?c84fd02ca8c0061063422a381c338491);
-  src: url(/fonts/Bold.eot?c84fd02ca8c0061063422a381c338491) format("embedded-opentype"), url(/fonts/Bold.woff?06b0768ad6991eaf12e8bc8d60db5823) format("woff"), url(/fonts/Bold.ttf?1b6d33306d2511560f9848d3b32cccc4) format("truetype"), url(/fonts/Bold.svg?e3adb308e8b4fe7c4fe161f88cb235ac) format("svg");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Regular";
-  src: url(/fonts/Regular.eot?77a28d0114234cf4a4a62e81189b5ca4);
-  src: url(/fonts/Regular.eot?77a28d0114234cf4a4a62e81189b5ca4) format("embedded-opentype"), url(/fonts/Regular.woff?34bca530cefb37d7997b97ef0b21b1e0) format("woff"), url(/fonts/Regular.ttf?fe90cacd8f3575a0d980dccfff3b2ee7) format("truetype"), url(/fonts/Regular.svg?1f105e3e75c295ac35546434a4877f81) format("svg");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "One-400";
-  src: url(/fonts/One-400.eot?33c152a5d48867258d0a6df4fd9582db);
-  src: url(/fonts/One-400.eot?33c152a5d48867258d0a6df4fd9582db) format("embedded-opentype"), url(/fonts/One-400.woff?a73d1c7c0f5083419356c9e728254265) format("woff"), url(/fonts/One-400.ttf?0ca4f53e3b479aec7fc8ff5af104769d) format("truetype"), url(/fonts/One-400.svg?f87ec1d30333e94fa38954653116dc65) format("svg");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "One-800";
-  src: url(/fonts/One-800.eot?738e3c7fddcd2de7d7bfabdec3c23aaa);
-  src: url(/fonts/One-800.eot?738e3c7fddcd2de7d7bfabdec3c23aaa) format("embedded-opentype"), url(/fonts/One-800.woff?d35c30cb1c86eec163002a4aa855a70b) format("woff"), url(/fonts/One-800.ttf?9f3379cd14610f02f23244d617d5d65a) format("truetype"), url(/fonts/One-800.svg?473498f8753f95b0de7c342c9affaaf0) format("svg");
-  font-weight: normal;
-  font-style: normal;
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -67,11 +35,10 @@
 body {
   padding: 0;
   margin: 0;
-  font-family: "One-400";
+  overflow: hidden;
 }
 
 body a {
-  font-family: "One-400" !important;
   text-decoration: none;
   color: #fff;
 }
@@ -85,7 +52,6 @@ body p {
   margin: 0;
   padding: 0;
   color: black;
-  font-family: "One-400" !important;
   font-weight: normal;
 }
 
@@ -95,7 +61,6 @@ body h3,
 body h4,
 body h5,
 body h6 {
-  font-family: "Bold" !important;
   margin: 0;
   padding: 0;
 }
@@ -121,7 +86,6 @@ body button:active {
   text-align: center;
   margin: 0 auto;
   position: relative;
-  font-family: "One-400";
 }
 
 #app img {

@@ -7,10 +7,8 @@
 body {
   padding: 0;
   margin: 0;
-  font-family: "One-400";
-
+  overflow: hidden;
   a {
-    font-family: "One-400" !important;
     text-decoration: none;
     color: #fff;
 
@@ -24,7 +22,6 @@ body {
     margin: 0;
     padding: 0;
     color: $black-100;
-    font-family: "One-400" !important;
     font-weight: normal;
   }
 
@@ -34,7 +31,6 @@ body {
   h4,
   h5,
   h6 {
-    font-family: "Bold" !important;
     margin: 0;
     padding: 0;
   }
@@ -63,7 +59,6 @@ body {
   text-align: center;
   margin: 0 auto;
   position: relative;
-  font-family: "One-400";
 
 
   img {

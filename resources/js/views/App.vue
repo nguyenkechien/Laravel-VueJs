@@ -1,9 +1,9 @@
 <template>
   <v-app>
     <div id="app" class="app position-ref full-height d-flex">
-      <app-Navigation></app-Navigation>
-      <div class="app-view">
-        <div class="app-view-header flex-center">
+      <app-Navigation v-if="$auth.check()"></app-Navigation>
+      <div class="app-view" :class="{'app-view-login':!$auth.check()}">
+        <div class="app-view-header flex-center" v-if="$auth.check()">
           <app-Header></app-Header>
         </div>
         <div class="app-view-content">
@@ -47,6 +47,11 @@ export default {
       height: 90%;
       padding: 1.25rem;
       background: #eef1f3;
+    }
+    &-login {
+      .app-view-content{
+        height: 95%;
+      }
     }
   }
 }

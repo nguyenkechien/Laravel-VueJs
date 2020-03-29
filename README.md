@@ -17,13 +17,13 @@ npm i || npm install
 composer install
 ```
 ```sh
-composer run scrtip post-autoload-dump
+composer run-script post-autoload-dump
 ```
 ```sh
-composer run scrtip post-root-package-install
+composer run-script post-root-package-install
 ```
 ```sh
-composer run scrtip post-create-project-cmd
+composer run-script post-create-project-cmd
 ```
 * Run Sript
 ```sh
