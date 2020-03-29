@@ -1,7 +1,6 @@
 @import "./Global/variables";
 @import "./Global/mixin";
 @import "./Global/keyframe";
-@import "./Global/font-cdn";
 @import "./Global/common";
 @import "./Global/classNameFunction";
 @import "./Lib/Font-awesome/css/all.min.css";
@@ -23,11 +22,12 @@
 
   .content {
     text-align: center;
+    &__title {
+      font-family: "Bold";
+      font-size: 84px;
+    }
   }
 
-  .title {
-    font-size: 84px;
-  }
 
   .links>a {
     color          : #636b6f;

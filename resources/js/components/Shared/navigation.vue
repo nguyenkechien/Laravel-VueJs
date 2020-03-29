@@ -1,27 +1,43 @@
 <template>
-  <div class="nav" :class="{active:isOpen}">
-    <div class="nav-icon-menu">
-      <div class="nav-icon-menu-group" v-on:click="isOpen = !isOpen">
-        <span class="nav-icon-menu-icon">
-          <i class="fal fa-bars"></i>
-        </span>
-        <span class="nav-icon-menu-name">Menu</span>
-      </div>
-    </div>
-    <div class="nav-search"></div>
-    <ul class="nav-group">
-      <li v-for="menu in dataMenus" :key="menu.code">
-        <router-link tag="a" :to="{path: menu.link}">
-          <div class="nav-icon-menu-group">
-            <span class="nav-icon-menu-icon">
-              <i :class="menu.classIcon"></i>
-            </span>
-            <span class="nav-icon-menu-name">{{menu.name}}</span>
-          </div>
-        </router-link>
-      </li>
-    </ul>
-  </div>
+  <v-card style="border-radius: 0">
+    <v-navigation-drawer v-model="drawer" dark :mini-variant.sync="mini" permanent>
+      <v-list-item class="px-2">
+        <v-list-item-avatar>
+          <v-img v-if="$auth.user().avatar" src="https://randomuser.me/api/portraits/men/85.jpg"></v-img>
+          <v-icon v-else>fal fa-user-circle</v-icon>
+        </v-list-item-avatar>
+        <v-list-item-title style="text-transform: capitalize;">{{ $auth.user().name }}</v-list-item-title>
+
+        <v-btn icon @click.stop="mini = !mini">
+          <v-icon>far fa-chevron-left</v-icon>
+        </v-btn>
+      </v-list-item>
+
+      <v-divider></v-divider>
+
+      <v-list dense>
+        <v-list-item v-for="item in items" :key="item.title" link :to="{path: item.link}">
+          <v-list-item-icon>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+      <template v-slot:append>
+        <div class="pa-2">
+          <!-- is Opent -->
+          <v-btn block @click="logOut" v-if="!mini">Logout</v-btn>
+          <!-- is Close -->
+          <v-btn small fab dark color="teal" @click="logOut" v-else>
+            <v-icon dark>fa-sign-out-alt</v-icon>
+          </v-btn>
+        </div>
+      </template>
+    </v-navigation-drawer>
+  </v-card>
 </template>
 
 <script>
@@ -29,105 +45,45 @@ export default {
   name: "Navigation",
   data() {
     return {
-      isOpen: true,
-      dataMenus: [
+      drawer: true,
+      items: [
         {
-          code: 1,
           link: "/",
-          name: "Home",
-          classIcon: "fas fa-home-lg-alt"
+          title: "Home",
+          icon: "fal fa-home"
         },
         {
-          code: 2,
-          link: "/login",
-          name: "Login",
-          classIcon: "fas fa-sign-in"
+          link: "/dashboard.html",
+          title: "Dashboard",
+          icon: "fal fa-tachometer-slowest"
         },
         {
-          code: 3,
-          link: "/about",
-          name: "ABOUT",
-          classIcon: "fas fa-address-card"
+          link: "/companies.html",
+          title: "Companies",
+          icon: "fal fa-building"
+        },
+        {
+          link: "/users.html",
+          title: "Users",
+          icon: "fal fa-user"
+        },
+        {
+          link: "/about.html",
+          title: "About",
+          icon: "fal fa-address-card"
         }
-      ]
+      ],
+      mini: true
     };
   },
   methods: {
-    toogleMenu: function() {}
+    logOut: function() {
+      this.$auth.logout();
+    }
   }
 };
 </script>
 
-<style lang="scss">
-@import "./../../../sass/Global/_variables.scss";
-.nav {
-  a {
-    color: #fff !important;
-  }
-  position: absolute;
-  top: 0;
-  left: 0;
-  transform: translate(0, 0);
-  height: 100%;
-  width: 75px;
-  background: #000;
-  color: #fff;
-  transition: 0.75s;
-  text-align: left;
-  text-transform: capitalize;
-  overflow: hidden;
-  &-group {
-    margin: 0;
-  }
-  &-info {
-    &-page {
-      padding: 5em;
-    }
-  }
-  &-icon {
-    &-menu {
-      padding: 10px 0;
-      span {
-        cursor: pointer;
-        user-select: none;
-      }
-      &-name {
-        width: 0%;
-        display: none;
-      }
-      &-icon {
-        width: 100%;
-        padding: 0 0.5em 0;
-        text-align: center;
-        margin: $mx-center;
-        transition: 0.5s;
-        i {
-          font-size: 30px;
-        }
-      }
-      &-group {
-        display: flex;
-        font-size: 18px;
-        justify-content: center;
-        align-items: center;
-        margin: 0 auto;
-        padding: 0.6em 0;
-      }
-    }
-  }
-  &.active {
-    width: 200px;
-    .nav {
-      &-icon-menu {
-        &-name {
-          display: block;
-          width: 60%;
-        }
-        &-icon {
-          width: 40%;
-        }
-      }
-    }
-  }
-}
-</style>
+<style lang="scss"></style>
+
+

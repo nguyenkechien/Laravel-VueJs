@@ -14,10 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 Route::group(['prefix' => '/v1', 'namespace' => 'Api\V1', 'as' => 'api.'], function () {
     Route::resource('companies', 'CompaniesController', ['except' => ['create', 'edit']]);
+});
+
+Route::group(['prefix' => 'user', 'namespace' => 'Api\V1', 'as' => 'api.'], function () {
+    Route::get('/', 'LoginController@user');
+    Route::post('register', 'LoginController@register');
+    Route::post('login', 'LoginController@login');
+    Route::post('logout', 'LoginController@logout');
 });
