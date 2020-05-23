@@ -1,18 +1,30 @@
 <template>
   <div class="user__register">
-    <div class="user__register__bg">
+    <div class="user__register__bg d-none d-md-block">
       <img class="wave" src="../../../images/wave.png" alt="wave" />
     </div>
     <div class="user__register__container row">
-      <div class="user__register__img col-4">
+      <div class="user__register__img col-4 d-none d-md-block">
         <img src="../../../images/bg.svg" alt="bg" />
       </div>
-      <div class="user__register__register-content col-4">
+      <div class="user__register__register-content col-md-4 col-xs-12">
         <v-card>
           <v-form ref="form" v-model="valid" @submit.prevent="register" :lazy-validation="lazy">
             <v-avatar color="#2dcd94" size="100">
-              <v-img src="../../../images/avatar.svg" alt="avatar" class="avatar" />
+              <img :src="srcAvatar" alt="avatar" class="avatar" />
             </v-avatar>
+            <v-card-text class="red--text darken-2" v-if="avatarRulse.length">{{avatarRulse}}</v-card-text>
+
+            <v-card-actions class="justify-center">
+              <v-btn text small color="#2dcd94" @click="fileChange">Choose avatar</v-btn>
+              <input
+                type="file"
+                class="d-none"
+                name="avatar"
+                @change="onFileChange"
+                ref="changeAvatar"
+              />
+            </v-card-actions>
             <v-card-title class="title">Welcome</v-card-title>
             <v-alert type="error" v-if="error">Account already exists</v-alert>
             <v-text-field
@@ -47,6 +59,8 @@
 </template>
 
 <script>
+import CallAPI from "./../CallAPI";
+
 export default {
   name: "appRegister",
   data() {
@@ -73,6 +87,9 @@ export default {
         v =>
           (v && v.length <= 50) || "Your Name must be less than 50 characters"
       ],
+      srcAvatar: "../../../images/avatar.svg",
+      avatar: null,
+      avatarRulse: "",
       lazy: false
     };
   },
@@ -89,6 +106,9 @@ export default {
           },
           success(response) {
             app.btnLoading = false;
+            if (app.avatar) {
+              app.upLoadAvatar();
+            }
           },
           error(err) {
             app.error = true;
@@ -96,6 +116,38 @@ export default {
           }
         });
       }
+    },
+    fileChange() {
+      this.$refs.changeAvatar.click();
+    },
+    onFileChange(e) {
+      const self = this;
+      const files = e.target.files;
+      if (!files[0]) {
+        return false;
+      }
+      if (
+        /([a-z\-_0-9\/\:\.]*\.(jpg|jpeg|png|gif))/i.test(files[0].name) ===
+        false
+      ) {
+        self.avatarRulse = "Vui lòng chọn file ảnh";
+        return false;
+      }
+      self.avatarRulse = "";
+      const fr = new FileReader();
+      fr.readAsDataURL(files[0]);
+      fr.onload = e => {
+        self.srcAvatar = e.target.result;
+        self.avatar = files[0];
+      };
+    },
+    async upLoadAvatar() {
+      const self = this;
+      let data = new FormData();
+      data.append("avatar", this.avatar);
+      data.append("email", this.email);
+
+      await CallAPI("api/upload/avatar", "POST", data);
     }
   }
 };
@@ -129,6 +181,12 @@ export default {
         margin: 0 auto;
         box-shadow: none;
         border: 0;
+        @media (max-width: 991px) {
+          max-width: 70%;
+        }
+        @media (max-width: 600px) {
+          max-width: 90%;
+        }
         &__actions {
           justify-content: space-between;
           padding-left: 0;

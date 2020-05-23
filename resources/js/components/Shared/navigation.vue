@@ -78,6 +78,7 @@ export default {
   },
   methods: {
     logOut: function() {
+      localStorage.removeItem("users");
       this.$auth.logout();
     }
   }

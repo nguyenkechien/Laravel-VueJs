@@ -1,13 +1,13 @@
 <template>
   <div class="user__login">
-    <div class="user__login__bg">
+    <div class="user__login__bg d-none d-md-block">
       <img class="wave" src="../../../images/wave.png" alt="wave" />
     </div>
     <div class="user__login__container row">
-      <div class="user__login__img col-4">
+      <div class="user__login__img col-4 d-none d-md-block">
         <img src="../../../images/bg.svg" alt="bg" />
       </div>
-      <div class="user__login__login-content col-4">
+      <div class="user__login__login-content col-md-4 col-xs-12">
         <v-card>
           <v-form ref="form" v-model="valid" @submit.prevent="login" :lazy-validation="lazy">
             <v-avatar color="#2dcd94" size="100">
@@ -31,7 +31,6 @@
               <router-link tag="a" to="register.html">Register</router-link>
             </v-card-actions>
             <v-checkbox v-model="checkbox" label="Remember" class="mt-2"></v-checkbox>
-
             <v-btn color="#2dcd94" :type="'submit'" :loading="btnLoading">Login</v-btn>
           </v-form>
         </v-card>
@@ -81,7 +80,8 @@ export default {
           error(err) {
             app.error = true;
             app.btnLoading = false;
-          }
+          },
+          rememberMe: app.checkbox
         });
       }
     }
@@ -117,6 +117,12 @@ export default {
         margin: 0 auto;
         box-shadow: none;
         border: 0;
+        @media (max-width: 991px) {
+          max-width: 70%;
+        }
+        @media (max-width: 600px) {
+          max-width: 90%;
+        }
         &__actions {
           justify-content: space-between;
           padding-left: 0;

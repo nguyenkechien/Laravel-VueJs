@@ -22,9 +22,18 @@ Route::group(['prefix' => '/v1', 'namespace' => 'Api\V1', 'as' => 'api.'], funct
     Route::resource('companies', 'CompaniesController', ['except' => ['create', 'edit']]);
 });
 
-Route::group(['prefix' => 'user', 'namespace' => 'Api\V1', 'as' => 'api.'], function () {
+Route::group(['prefix' => '/v1', 'namespace' => 'Api\V1', 'as' => 'api.'], function () {
+    Route::resource('users', 'UsersController', ['except' => ['create', 'edit']]);
+});
+
+Route::group(['prefix' => 'auth', 'namespace' => 'Api\V1', 'as' => 'api.'], function () {
     Route::get('/', 'LoginController@user');
     Route::post('register', 'LoginController@register');
     Route::post('login', 'LoginController@login');
     Route::post('logout', 'LoginController@logout');
 });
+
+Route::group(['prefix' => '/upload', 'namespace' => 'Api\V1', 'as' => 'api.'], function () {
+    Route::post('avatar', 'UploadController@avatar');
+});
+

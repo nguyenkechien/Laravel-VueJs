@@ -11,25 +11,28 @@ const config = {
   notFoundRedirect: {
     path: "/"
   },
+  authRedirect: {
+    path: "/login.html"
+  },
   registerData: {
-    url: "/api/user/register",
+    url: "/api/auth/register",
     method: "POST",
-    redirect: "/login.html",
+    redirect: "/login.html"
   },
   loginData: {
-    url: "/api/user/login",
+    url: "/api/auth/login",
     method: "POST",
     redirect: "/",
     fetchUser: true
   },
   logoutData: {
-    url: "/api/user/logout",
+    url: "/api/auth/logout",
     method: "POST",
     redirect: "/login.html",
     makeRequest: true
   },
   fetchData: {
-    url: "/api/user/",
+    url: "/api/auth/",
     method: "GET",
     enabled: true
   },

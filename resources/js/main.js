@@ -9,14 +9,14 @@ import axios from "axios";
 import VueAxios from 'vue-axios';
 import VueRouter from "vue-router";
 
-// axios.interceptors.response.use(
-//   response => {
-//     return response;
-//   },
-//   error => {
-//     return error.response;
-//   }
-// );
+axios.interceptors.response.use(
+  response => {
+    return response;
+  },
+  error => {
+    return error.response;
+  }
+);
 
 Vue.use(VueAxios, axios);
 Vue.router = Routes;

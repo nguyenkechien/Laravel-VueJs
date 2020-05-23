@@ -1,18 +1,18 @@
 <template>
-  <div class="companies__table">
+  <div class="users__table">
     <v-data-table
       :headers="headers"
-      :items="dataCompanies"
+      :items="dataUsers"
       :page.sync="pagination.page"
       :items-per-page="itemsPerPage"
       :loading="loading"
       hide-default-footer
-      class="companies__table__item"
+      class="users__table__item"
       @page-count="pagination.pageCount = $event"
     >
       <template v-slot:top>
         <v-toolbar flat color="white">
-          <v-toolbar-title>Companies</v-toolbar-title>
+          <v-toolbar-title>Users</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-dialog v-model="dialog" max-width="700px">
             <template v-slot:activator="{ on }">
@@ -27,16 +27,17 @@
                 <v-container>
                   <v-row>
                     <v-col cols="12" sm="6" md="6">
-                      <v-text-field v-model="editedItem.name" label="Company name"></v-text-field>
+                      <v-text-field v-model="editedItem.name" :rules="rules.name" label="User Name"></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6" md="6">
-                      <v-text-field v-model="editedItem.address" label="Address"></v-text-field>
+                      <v-text-field v-model="editedItem.email" :rules="rules.email" label="E-mail"></v-text-field>
                     </v-col>
-                    <v-col cols="12" sm="6" md="6">
-                      <v-text-field v-model="editedItem.website" label="Website"></v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="6">
-                      <v-text-field v-model="editedItem.email" label="Email"></v-text-field>
+                    <v-col cols="12" sm="6" md="6" v-if="editedIndex === -1">
+                      <v-text-field
+                        v-model="editedItem.password"
+                        :rules="rules.password"
+                        label="Password"
+                      ></v-text-field>
                     </v-col>
                   </v-row>
                 </v-container>
@@ -51,9 +52,14 @@
           </v-dialog>
         </v-toolbar>
       </template>
-      <template v-slot:item.website="{ item }">
-        <a :href="item.website" target="_blank" rel="noopener noreferrer">{{item.website}}</a>
+
+      <template v-slot:item.avatar="{ item }">
+        <v-avatar size="60" class="my-2">
+          <v-img width="60" :src="domain+item.avatar" v-if="item.avatar"></v-img>
+          <v-icon width="60" v-else>fal fa-user-circle</v-icon>
+        </v-avatar>
       </template>
+
       <template v-slot:item.email="{ item }">
         <a :href="`mailto:${item.email}`">{{item.email}}</a>
       </template>
@@ -72,6 +78,7 @@
       <template v-slot:no-data>
         <v-btn color="primary" @click="getData">Reset</v-btn>
       </template>
+
       <template v-slot:footer>
         <div class="text-right py-4 d-flex">
           <v-pagination
@@ -87,12 +94,13 @@
 </template>
 
 <script>
-import { _dataCompanies } from "./_dataCompanies";
 import CallAPI from "./../CallAPI";
+import config from "./../../config/index";
 export default {
-  name: "TabCompanies",
+  name: "TabUsers",
   data() {
     return {
+      domain: config.DOMAIN_API,
       loading: true,
       pagination: {
         page: 1,
@@ -100,32 +108,54 @@ export default {
       },
       itemsPerPage: 13,
       dialog: false,
-      dataCompanies: [],
+      dataUsers: [],
       headers: [
         {
-          text: "Company name",
+          text: "User name",
           align: "left",
           value: "name"
         },
-        { text: "Address", value: "address", sortable: false },
-        { text: "Website", value: "website", sortable: false },
+        { text: "Avatar", value: "avatar", sortable: false },
         { text: "Email", value: "email", sortable: false },
-        { text: "Actions", value: "actions", sortable: false, align: "center", }
+        { text: "Actions", value: "actions", sortable: false, align: "center" }
       ],
       editedIndex: -1,
       editedItem: {
         id: 0,
         name: "",
-        address: "",
-        website: "",
-        email: ""
+        avatar: "",
+        email: "",
+        password: ""
       },
       defaultItem: {
         id: 0,
         name: "",
-        address: "",
-        website: "",
-        email: ""
+        avatar: "",
+        email: "",
+        password: ""
+      },
+      rules: {
+        avatar: [
+          value =>
+            !value ||
+            value.size < 2000000 ||
+            "Avatar size should be less than 2 MB!"
+        ],
+        email: [
+          v => !!v || "E-mail is required",
+          v => /.+@.+\..+/.test(v) || "E-mail must be valid"
+        ],
+        name: [
+          v => !!v || "Your Name required",
+          v =>
+            (v && v.length <= 50) || "Your Name must be less than 50 characters"
+        ],
+        password: [
+          v => !!v || "Password is required",
+          v =>
+            (v && v.length <= 50) || "Password must be less than 50 characters",
+          v => (v && v.length > 6) || "Password is greater than 6 characters"
+        ]
       }
     };
   },
@@ -144,30 +174,39 @@ export default {
   },
   methods: {
     async getData() {
-      /**
-       * @type {Object}
-       */
-      let dataCompanies = await CallAPI("api/v1/companies");
-      try {
+      let localData = localStorage.getItem("users");
+      let feachData;
+      if (!localData) {
+        /**
+         * @type {Object}
+         */
+        feachData = await CallAPI("api/v1/users");
+        try {
+          this.loading = false;
+          this.dataUsers = feachData.data;
+          this.dataUsers.sort(function(a, b) {
+            return b.id - a.id;
+          });
+          localStorage.setItem("users", JSON.stringify(this.dataUsers));
+        } catch (error) {
+          this.loading = true;
+        }
+      } else {
+        this.dataUsers = JSON.parse(localData);
         this.loading = false;
-        
-        this.dataCompanies = dataCompanies.data;
-        this.dataCompanies.sort(function(a, b){return b.id-a.id});
-
-      } catch (error) {
-        this.loading = true;
       }
     },
     editItem(item) {
-      this.editedIndex = this.dataCompanies.indexOf(item);
+      this.editedIndex = this.dataUsers.indexOf(item);
       this.editedItem = Object.assign({}, item);
       this.dialog = true;
     },
     async deleteItem(item) {
-      const index = this.dataCompanies.indexOf(item);
+      const index = this.dataUsers.indexOf(item);
       confirm("Are you sure you want to delete this item?") &&
-        this.dataCompanies.splice(index, 1) &&
-        await CallAPI(`api/v1/companies/${item.id}`, "DELETE");
+        this.dataUsers.splice(index, 1) &&
+        (await CallAPI(`api/v1/users/${item.id}`, "DELETE"));
+      localStorage.setItem("users", JSON.stringify(this.dataUsers));
     },
     close() {
       this.dialog = false;
@@ -181,14 +220,20 @@ export default {
         /**
          * Edit
          */
-        Object.assign(this.dataCompanies[this.editedIndex], this.editedItem);
-        await CallAPI(`api/v1/companies/${this.editedItem.id}`, "PATCH", this.editedItem);
+        Object.assign(this.dataUsers[this.editedIndex], this.editedItem);
+        await CallAPI(
+          `api/v1/users/${this.editedItem.id}`,
+          "PATCH",
+          this.editedItem
+        );
+        localStorage.setItem("users", JSON.stringify(this.dataUsers));
       } else {
         /**
          * new
          */
-        this.dataCompanies.unshift(this.editedItem);
-        await CallAPI("api/v1/companies", "POST", this.editedItem);
+        this.dataUsers.unshift(this.editedItem);
+        await CallAPI("api/v1/users", "POST", this.editedItem);
+        localStorage.setItem("users", JSON.stringify(this.dataUsers));
       }
       this.close();
     }
@@ -197,7 +242,7 @@ export default {
 </script>
 
 <style lang="scss" scope>
-.companies {
+.users {
   &__table {
     &__item {
       th {
@@ -217,7 +262,8 @@ export default {
         }
       }
 
-      .edit, .del{
+      .edit,
+      .del {
         width: 50%;
         text-align: center;
       }

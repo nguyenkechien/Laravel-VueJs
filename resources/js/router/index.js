@@ -1,4 +1,3 @@
-import Vue from "vue";
 import VueRouter from "vue-router";
 import Webcome from "@/js/pages/webcome";
 import About from "@/js/pages/about";
@@ -6,6 +5,8 @@ import Dashboard from "@/js/pages/dashboard";
 import Companies from "@/js/pages/companies";
 import Login from "@/js/pages/login";
 import Register from "@/js/pages/register";
+import Users from "@/js/pages/users";
+import Profile from "@/js/pages/profile";
 
 
 const router = new VueRouter({
@@ -36,6 +37,22 @@ const router = new VueRouter({
       }
     },
     {
+      path: "/users.html",
+      name: "users",
+      component: Users,
+      meta: {
+        auth: true
+      }
+    },
+    {
+      path: "/profile.html",
+      name: "profile",
+      component: Profile,
+      meta: {
+        auth: true
+      }
+    },
+    {
       path: "/companies.html",
       name: "Companies",
       component: Companies,
@@ -58,6 +75,10 @@ const router = new VueRouter({
       meta: {
         auth: false
       }
+    },
+    {
+      path: "*",
+      redirect: '/'
     }
   ]
 });

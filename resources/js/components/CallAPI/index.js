@@ -13,14 +13,14 @@ export const ApiCaller = async (endpoint, method = "GET", body) => {
   let api = await axios({
     method: method,
     url: `${config.DOMAIN_API}/${endpoint}`,
-    data: body
+    data: body,
   });
 
   axios.interceptors.response.use(
-    response => {
+    (response) => {
       return response;
     },
-    error => {
+    (error) => {
       return error.response;
     }
   );
