@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class LoginController extends Controller
 {
@@ -28,13 +29,17 @@ class LoginController extends Controller
       'email' => 'required|email|unique:users',
       'password' => 'required|min:6',
     ]);
+    if ($request->has('avatar')) {
+      $path =  $request->file('avatar')->store('public/avatar');
+      $url = Storage::url($path);
+    }
 
     $user = User::create([
       'name' => $request->name,
       'email' => $request->email,
       'password' => bcrypt($request->password),
+      'avatar' => $url
     ]);
-
     return response()->json(['user' => $user], Response::HTTP_OK);
   }
   public function login(Request $request)

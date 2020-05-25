@@ -78,6 +78,7 @@ export default {
             app.btnLoading = false;
           },
           error(err) {
+            console.log(err);
             app.error = true;
             app.btnLoading = false;
           },

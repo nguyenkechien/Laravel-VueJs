@@ -6,14 +6,14 @@
       :page.sync="pagination.page"
       :items-per-page="itemsPerPage"
       :loading="loading"
+      :search="search"
       hide-default-footer
       class="users__table__item"
       @page-count="pagination.pageCount = $event"
     >
       <template v-slot:top>
         <v-toolbar flat color="white">
-          <v-toolbar-title>Users</v-toolbar-title>
-          <v-spacer></v-spacer>
+          <v-toolbar-title class="m-right-1">Users</v-toolbar-title>
           <v-dialog v-model="dialog" max-width="700px">
             <template v-slot:activator="{ on }">
               <v-btn color="primary" dark class="mb-2" v-on="on">New Item</v-btn>
@@ -50,12 +50,20 @@
               </v-card-actions>
             </v-card>
           </v-dialog>
+          <v-spacer></v-spacer>
+          <v-text-field
+            v-model="search"
+            append-icon="fal fa-search"
+            label="Search"
+            single-line
+            hide-details
+          ></v-text-field>
         </v-toolbar>
       </template>
 
       <template v-slot:item.avatar="{ item }">
         <v-avatar size="60" class="my-2">
-          <v-img width="60" :src="domain+item.avatar" v-if="item.avatar"></v-img>
+          <v-img width="60" :src="item.avatar" v-if="item.avatar"></v-img>
           <v-icon width="60" v-else>fal fa-user-circle</v-icon>
         </v-avatar>
       </template>
@@ -95,13 +103,12 @@
 
 <script>
 import CallAPI from "./../CallAPI";
-import config from "./../../config/index";
 export default {
   name: "TabUsers",
   data() {
     return {
-      domain: config.DOMAIN_API,
       loading: true,
+      search: '',
       pagination: {
         page: 1,
         pageCount: 0

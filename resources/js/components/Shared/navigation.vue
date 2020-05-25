@@ -3,7 +3,7 @@
     <v-navigation-drawer v-model="drawer" dark :mini-variant.sync="mini" permanent>
       <v-list-item class="px-2">
         <v-list-item-avatar>
-          <v-img v-if="$auth.user().avatar" src="https://randomuser.me/api/portraits/men/85.jpg"></v-img>
+          <v-img v-if="$auth.user().avatar" :src=$auth.user().avatar></v-img>
           <v-icon v-else>fal fa-user-circle</v-icon>
         </v-list-item-avatar>
         <v-list-item-title style="text-transform: capitalize;">{{ $auth.user().name }}</v-list-item-title>
@@ -41,6 +41,7 @@
 </template>
 
 <script>
+import config from '../../config';
 export default {
   name: "Navigation",
   data() {
@@ -73,7 +74,7 @@ export default {
           icon: "fal fa-address-card"
         }
       ],
-      mini: true
+      mini: true,
     };
   },
   methods: {

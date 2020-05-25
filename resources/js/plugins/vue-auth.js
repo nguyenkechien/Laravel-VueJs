@@ -17,7 +17,8 @@ const config = {
   registerData: {
     url: "/api/auth/register",
     method: "POST",
-    redirect: "/login.html"
+    redirect: "/",
+    autoLogin: true
   },
   loginData: {
     url: "/api/auth/login",
@@ -32,7 +33,7 @@ const config = {
     makeRequest: true
   },
   fetchData: {
-    url: "/api/auth/",
+    url: "/api/auth/user",
     method: "GET",
     enabled: true
   },

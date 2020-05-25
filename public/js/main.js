@@ -3206,6 +3206,7 @@ __webpack_require__.r(__webpack_exports__);
             app.btnLoading = false;
           },
           error: function error(err) {
+            console.log(err);
             app.error = true;
             app.btnLoading = false;
           },
@@ -3227,15 +3228,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _CallAPI__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../CallAPI */ "./resources/js/components/CallAPI/index.js");
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
+/* harmony import */ var _CallAPI__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../CallAPI */ "./resources/js/components/CallAPI/index.js");
 //
 //
 //
@@ -3337,18 +3330,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       if (app.$refs.form.validate()) {
         app.btnLoading = true;
+
+        var _data = new FormData();
+
+        _data.append("avatar", app.avatar);
+
+        _data.append("email", app.email);
+
+        _data.append("name", app.name);
+
+        _data.append("password", app.password);
+
         this.$auth.register({
-          params: {
-            name: app.name,
-            email: app.email,
-            password: app.password
-          },
+          data: _data,
           success: function success(response) {
             app.btnLoading = false;
-
-            if (app.avatar) {
-              app.upLoadAvatar();
-            }
           },
           error: function error(err) {
             app.error = true;
@@ -3381,30 +3377,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         self.srcAvatar = e.target.result;
         self.avatar = files[0];
       };
-    },
-    upLoadAvatar: function upLoadAvatar() {
-      var _this = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var self, data;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                self = _this;
-                data = new FormData();
-                data.append("avatar", _this.avatar);
-                data.append("email", _this.email);
-                _context.next = 6;
-                return Object(_CallAPI__WEBPACK_IMPORTED_MODULE_1__["default"])("api/upload/avatar", "POST", data);
-
-              case 6:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }))();
     }
   }
 });
@@ -3974,6 +3946,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../config */ "./resources/js/config/index.js");
 //
 //
 //
@@ -4016,6 +3989,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Navigation",
   data: function data() {
@@ -4067,7 +4041,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _CallAPI__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../CallAPI */ "./resources/js/components/CallAPI/index.js");
-/* harmony import */ var _config_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../../config/index */ "./resources/js/config/index.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -4169,14 +4142,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "TabUsers",
   data: function data() {
     return {
-      domain: _config_index__WEBPACK_IMPORTED_MODULE_2__["default"].DOMAIN_API,
       loading: true,
+      search: '',
       pagination: {
         page: 1,
         pageCount: 0
@@ -4565,7 +4545,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_Profile_Profile__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../components/Profile/Profile */ "./resources/js/components/Profile/Profile.vue");
+/* harmony import */ var _components_Profile_Profile__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../components/Profile/Profile */ "./resources/js/components/Profile/Profile.vue");
 //
 //
 //
@@ -4574,7 +4554,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Profile",
   components: {
-    "app-Profile": _components_Profile_Profile__WEBPACK_IMPORTED_MODULE_1__["default"]
+    "app-Profile": _components_Profile_Profile__WEBPACK_IMPORTED_MODULE_0__["default"]
   }
 });
 
@@ -24395,7 +24375,7 @@ var render = function() {
                   _c("v-avatar", { attrs: { color: "#2dcd94", size: "100" } }, [
                     _c("img", {
                       staticClass: "avatar",
-                      attrs: { src: _vm.srcAvatar, alt: "avatar" }
+                      attrs: { src: _vm.srcAvatar, width: "100", alt: "avatar" }
                     })
                   ]),
                   _vm._v(" "),
@@ -25313,11 +25293,7 @@ var render = function() {
                 "v-list-item-avatar",
                 [
                   _vm.$auth.user().avatar
-                    ? _c("v-img", {
-                        attrs: {
-                          src: "https://randomuser.me/api/portraits/men/85.jpg"
-                        }
-                      })
+                    ? _c("v-img", { attrs: { src: _vm.$auth.user().avatar } })
                     : _c("v-icon", [_vm._v("fal fa-user-circle")])
                 ],
                 1
@@ -25418,6 +25394,7 @@ var render = function() {
           page: _vm.pagination.page,
           "items-per-page": _vm.itemsPerPage,
           loading: _vm.loading,
+          search: _vm.search,
           "hide-default-footer": ""
         },
         on: {
@@ -25437,9 +25414,9 @@ var render = function() {
                   "v-toolbar",
                   { attrs: { flat: "", color: "white" } },
                   [
-                    _c("v-toolbar-title", [_vm._v("Users")]),
-                    _vm._v(" "),
-                    _c("v-spacer"),
+                    _c("v-toolbar-title", { staticClass: "m-right-1" }, [
+                      _vm._v("Users")
+                    ]),
                     _vm._v(" "),
                     _c(
                       "v-dialog",
@@ -25630,7 +25607,25 @@ var render = function() {
                         )
                       ],
                       1
-                    )
+                    ),
+                    _vm._v(" "),
+                    _c("v-spacer"),
+                    _vm._v(" "),
+                    _c("v-text-field", {
+                      attrs: {
+                        "append-icon": "fal fa-search",
+                        label: "Search",
+                        "single-line": "",
+                        "hide-details": ""
+                      },
+                      model: {
+                        value: _vm.search,
+                        callback: function($$v) {
+                          _vm.search = $$v
+                        },
+                        expression: "search"
+                      }
+                    })
                   ],
                   1
                 )
@@ -25649,7 +25644,7 @@ var render = function() {
                   [
                     item.avatar
                       ? _c("v-img", {
-                          attrs: { width: "60", src: _vm.domain + item.avatar }
+                          attrs: { width: "60", src: item.avatar }
                         })
                       : _c("v-icon", { attrs: { width: "60" } }, [
                           _vm._v("fal fa-user-circle")
@@ -83622,11 +83617,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-axios__WEBPACK_IMPORTED_MODULE_7___default.a.interceptors.response.use(function (response) {
-  return response;
-}, function (error) {
-  return error.response;
-});
 vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_axios__WEBPACK_IMPORTED_MODULE_8___default.a, axios__WEBPACK_IMPORTED_MODULE_7___default.a);
 vue__WEBPACK_IMPORTED_MODULE_1___default.a.router = _js_router__WEBPACK_IMPORTED_MODULE_3__["default"];
 _js_views_App__WEBPACK_IMPORTED_MODULE_4__["default"].router = vue__WEBPACK_IMPORTED_MODULE_1___default.a.router;
@@ -84281,7 +84271,8 @@ var config = {
   registerData: {
     url: "/api/auth/register",
     method: "POST",
-    redirect: "/login.html"
+    redirect: "/",
+    autoLogin: true
   },
   loginData: {
     url: "/api/auth/login",
@@ -84296,7 +84287,7 @@ var config = {
     makeRequest: true
   },
   fetchData: {
-    url: "/api/auth/",
+    url: "/api/auth/user",
     method: "GET",
     enabled: true
   },
@@ -84353,7 +84344,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _js_pages_login__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/js/pages/login */ "./resources/js/pages/login.vue");
 /* harmony import */ var _js_pages_register__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/js/pages/register */ "./resources/js/pages/register.vue");
 /* harmony import */ var _js_pages_users__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/js/pages/users */ "./resources/js/pages/users.vue");
-/* harmony import */ var _js_pages_profile__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @/js/pages/profile */ "./resources/js/pages/profile.vue");
+/* harmony import */ var _js_pages_profile__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/js/pages/profile */ "./resources/js/pages/profile.vue");
 
 
 
@@ -84396,7 +84387,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
   }, {
     path: "/profile.html",
     name: "profile",
-    component: _js_pages_profile__WEBPACK_IMPORTED_MODULE_9__["default"],
+    component: _js_pages_profile__WEBPACK_IMPORTED_MODULE_8__["default"],
     meta: {
       auth: true
     }

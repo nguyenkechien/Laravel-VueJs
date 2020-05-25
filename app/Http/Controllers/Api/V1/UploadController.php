@@ -12,13 +12,13 @@ class UploadController extends Controller
   public function avatar(Request $request)
   {
     // if ($request->has('avatar') && $request->has('email')) {
-    $path =  $request->file('avatar')->store('public/avatar');
-    $user = User::where('email', $request['email'])->first();
-    $url = Storage::url($path);
-    $user->update([
-      'avatar' => $url
-    ]);
+    // $path =  $request->file('avatar')->store('public/avatar');
+    // $user = User::where('email', $request['email'])->first();
+    // $url = Storage::url($path);
+    // $user->update([
+    //   'avatar' => $url
+    // ]);
     // }
-    return response(['messenger' => 'Done!', 'patch' => $url], 200);
+    // return response(['messenger' => 'Done!', 'patch' => $url], 200);
   }
 }

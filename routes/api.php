@@ -27,7 +27,7 @@ Route::group(['prefix' => '/v1', 'namespace' => 'Api\V1', 'as' => 'api.'], funct
 });
 
 Route::group(['prefix' => 'auth', 'namespace' => 'Api\V1', 'as' => 'api.'], function () {
-    Route::get('/', 'LoginController@user');
+    Route::get('/user', 'LoginController@user');
     Route::post('register', 'LoginController@register');
     Route::post('login', 'LoginController@login');
     Route::post('logout', 'LoginController@logout');

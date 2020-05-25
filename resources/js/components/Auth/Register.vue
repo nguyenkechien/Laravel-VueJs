@@ -11,7 +11,7 @@
         <v-card>
           <v-form ref="form" v-model="valid" @submit.prevent="register" :lazy-validation="lazy">
             <v-avatar color="#2dcd94" size="100">
-              <img :src="srcAvatar" alt="avatar" class="avatar" />
+              <img :src="srcAvatar" width="100" alt="avatar" class="avatar" />
             </v-avatar>
             <v-card-text class="red--text darken-2" v-if="avatarRulse.length">{{avatarRulse}}</v-card-text>
 
@@ -98,17 +98,16 @@ export default {
       let app = this;
       if (app.$refs.form.validate()) {
         app.btnLoading = true;
+        let _data = new FormData();
+        _data.append("avatar", app.avatar);
+        _data.append("email", app.email);
+        _data.append("name", app.name);
+        _data.append("password", app.password);
+
         this.$auth.register({
-          params: {
-            name: app.name,
-            email: app.email,
-            password: app.password
-          },
+          data: _data,
           success(response) {
             app.btnLoading = false;
-            if (app.avatar) {
-              app.upLoadAvatar();
-            }
           },
           error(err) {
             app.error = true;
@@ -140,14 +139,6 @@ export default {
         self.srcAvatar = e.target.result;
         self.avatar = files[0];
       };
-    },
-    async upLoadAvatar() {
-      const self = this;
-      let data = new FormData();
-      data.append("avatar", this.avatar);
-      data.append("email", this.email);
-
-      await CallAPI("api/upload/avatar", "POST", data);
     }
   }
 };
