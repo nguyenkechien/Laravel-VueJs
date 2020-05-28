@@ -19,6 +19,10 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::group(['prefix' => '/v1', 'namespace' => 'Api\V1', 'as' => 'api.'], function () {
+    Route::resource('category-blog', 'CategoryBlogController', ['except' => ['create', 'edit']]);
+});
+
+Route::group(['prefix' => '/v1', 'namespace' => 'Api\V1', 'as' => 'api.'], function () {
     Route::resource('companies', 'CompaniesController', ['except' => ['create', 'edit']]);
 });
 
