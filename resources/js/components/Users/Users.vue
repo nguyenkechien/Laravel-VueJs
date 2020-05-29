@@ -50,7 +50,7 @@
               </v-card-actions>
             </v-card>
           </v-dialog>
-          <v-spacer></v-spacer>
+          <v-spacer class="hide-sm"></v-spacer>
           <v-text-field
             v-model="search"
             append-icon="fal fa-search"
@@ -108,7 +108,7 @@ export default {
   data() {
     return {
       loading: true,
-      search: '',
+      search: "",
       pagination: {
         page: 1,
         pageCount: 0
@@ -266,6 +266,33 @@ export default {
       .v {
         &-pagination {
           justify-content: flex-end;
+        }
+        &-toolbar {
+          &__content {
+            @media (max-width: 480px) {
+              flex-wrap: wrap;
+              .v{
+                &-input {
+                width: 100%;
+              }
+              &-btn{
+                width: 50%;
+              }
+              }
+            }
+          }
+          &__title {
+            @media (max-width: 480px) {
+              width: 50%;
+              margin: 0;
+              text-align:left;
+            }
+          }
+        }
+        &-data-table__wrapper {
+          @media (max-width: 480px) {
+            margin: 2.5em 0 0;
+          }
         }
       }
 

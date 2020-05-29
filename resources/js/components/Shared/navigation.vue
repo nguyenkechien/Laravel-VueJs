@@ -49,27 +49,27 @@ export default {
       drawer: true,
       items: [
         {
-          link: "/",
+          link: "/admin/webcome.html",
           title: "Home",
           icon: "fal fa-home"
         },
         {
-          link: "/dashboard.html",
+          link: "/admin/dashboard.html",
           title: "Dashboard",
           icon: "fal fa-tachometer-slowest"
         },
         {
-          link: "/companies.html",
+          link: "/admin/companies.html",
           title: "Companies",
           icon: "fal fa-building"
         },
         {
-          link: "/users.html",
+          link: "/admin/users.html",
           title: "Users",
           icon: "fal fa-user"
         },
         {
-          link: "/about.html",
+          link: "/admin/about.html",
           title: "About",
           icon: "fal fa-address-card"
         }

@@ -9,7 +9,7 @@ const config = {
   tokenDefaultName: "auth-token",
   tokenStore: ["cookie"],
   notFoundRedirect: {
-    path: "/"
+    path: "/admin/webcome.html"
   },
   authRedirect: {
     path: "/login.html"
@@ -17,13 +17,13 @@ const config = {
   registerData: {
     url: "/api/auth/register",
     method: "POST",
-    redirect: "/",
+    redirect: "/admin/webcome.html",
     autoLogin: true
   },
   loginData: {
     url: "/api/auth/login",
     method: "POST",
-    redirect: "/",
+    redirect: "/admin/webcome.html",
     fetchUser: true
   },
   logoutData: {

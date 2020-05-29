@@ -7,55 +7,57 @@ import Login from "@/js/pages/login";
 import Register from "@/js/pages/register";
 import Users from "@/js/pages/users";
 import Profile from "@/js/pages/profile";
-
+import Category from "@/js/pages/category";
+import Admin from "@/js/views/admin";
 
 const router = new VueRouter({
   mode: "history",
   routes: [
     {
-      path: "/",
+      path: "/Admin",
       name: "home",
-      component: Webcome,
-      meta: {
-        auth: true
-      }
-    },
-    {
-      path: "/about.html",
-      name: "about",
-      component: About,
-      meta: {
-        auth: true
-      }
-    },
-    {
-      path: "/dashboard.html",
-      name: "dashboard",
-      component: Dashboard,
-      meta: {
-        auth: true
-      }
-    },
-    {
-      path: "/users.html",
-      name: "users",
-      component: Users,
-      meta: {
-        auth: true
-      }
-    },
-    {
-      path: "/profile.html",
-      name: "profile",
-      component: Profile,
-      meta: {
-        auth: true
-      }
-    },
-    {
-      path: "/companies.html",
-      name: "Companies",
-      component: Companies,
+      component: Admin,
+      children: [
+        {
+          path: "webcome.html",
+          name: "webcome",
+          component: Webcome,
+        },
+        {
+          path: "about.html",
+          name: "about",
+          component: About,
+        },
+        {
+          path: "dashboard.html",
+          name: "dashboard",
+          component: Dashboard,
+        },
+        {
+          path: "users.html",
+          name: "users",
+          component: Users,
+        },
+        {
+          path: "profile.html",
+          name: "profile",
+          component: Profile,
+        },
+        {
+          path: "companies.html",
+          name: "companies",
+          component: Companies,
+        },
+        {
+          path: "category.html",
+          name: "category",
+          component: Category,
+        },
+        {
+          path: "*",
+          redirect: '/webcome.html'
+        }
+      ],
       meta: {
         auth: true
       }
@@ -78,7 +80,7 @@ const router = new VueRouter({
     },
     {
       path: "*",
-      redirect: '/'
+      redirect: '/login.html'
     }
   ]
 });

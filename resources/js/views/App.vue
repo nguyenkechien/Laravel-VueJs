@@ -7,7 +7,7 @@
           <app-Header></app-Header>
         </div>
         <div class="app-view-content">
-          <router-view></router-view>
+          <router-view ></router-view>
         </div>
         <div class="app-view-footer flex-center">
           <app-Footer></app-Footer>
